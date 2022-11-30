@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+// Пусть дан произвольный список целых чисел, удалить из него четные числа
+public class dz3_2 {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        ArrayList<Integer> nums = new ArrayList<>();
+        for(int i = 0; i < 10; i++){
+            nums.add(rand.nextInt(101));
+        }
+        System.out.println(nums);
+        deleteEvenNum(nums);
+        System.out.println(nums);
+    }
+        
+    public static ArrayList<Integer> deleteEvenNum(ArrayList<Integer> num) {
+        for(int i = num.size() - 1; i > -1 ; i--){
+            if(num.get(i) % 2 == 0) num.remove(i);
+        }
+        return num;
+    }
+}
