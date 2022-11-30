@@ -1,0 +1,46 @@
+// Реализовать алгоритм сортировки слиянием
+public class dz3_1 {
+    public static void main(String[] args) {
+        int[] mas = {1, 6, 98, 4, 32, 54, 66, 12, 54, 17};
+        int[] mas2 = sortArray(mas);
+        for(int i = 0; i < mas2.length; i++){
+                System.out.print(mas2[i] + " ");
+            }
+    }
+    public static int[] sortArray(int[] arr) {
+        if (arr == null) {
+            return null;
+        }
+        if (arr.length < 2) {
+            return arr; 
+        }
+        int[] left = new int[arr.length / 2];
+        System.arraycopy(arr, 0, left, 0, arr.length / 2);
+        int[] right = new int[arr.length - arr.length / 2];
+        System.arraycopy(arr, arr.length / 2, right, 0, arr.length - arr.length / 2);
+        left = sortArray(left);
+        right = sortArray(right);
+        return mergeArray(left, right);
+    }
+    private static int[] mergeArray(int[] arr1, int[] arr2) {       
+        int [] result = new int[arr1.length + arr2.length];
+        int pos1 = 0, pos2 = 0;
+
+        for (int i = 0; i < result.length; i++) {
+	        if (pos1 > arr1.length-1){
+                result[i] = arr2[pos2];
+                pos2++;
+	        } else if (pos2 > arr2.length-1) {
+	            result[i] = arr1[pos1];
+	            pos1++;
+	        } else if (arr1[pos1] < arr2[pos2]) {
+	            result[i] = arr1[pos1];
+	            pos1++;
+	        } else {
+	            result[i] = arr2[pos2];
+                pos2++;
+	        }
+        }
+        return result;
+    }    
+}
