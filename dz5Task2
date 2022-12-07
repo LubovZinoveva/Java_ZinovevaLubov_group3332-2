@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
+/* Пусть дан список сотрудников:Иван Иванов Светлана Петрова Кристина Белова Анна Мусина Анна Крутова 
+Иван Юрин Петр Лыков Павел Чернов Петр Чернышов Мария Федорова Марина Светлова Мария Савина Мария Рыкова
+Марина Лугова Анна Владимирова Иван Мечников Петр Петин Иван Ежов
+Написать программу, которая найдет и выведет повторяющиеся имена с количеством повторений. 
+Отсортировать по убыванию популярности */
+
+public class dz5Task2 {
+    public static void main(String[] args) {
+        List<String> employees = new ArrayList<>();
+        employees.add("Иван Иванов");
+        employees.add("Светлана Петрова");
+        employees.add("Кристина Белова");
+        employees.add("Анна Мусина");
+        employees.add("Анна Крутова");
+        employees.add("Иван Юрин");
+        employees.add("Петр Лыков");
+        employees.add("Павел Чернов");
+        employees.add("Петр Чернышов");
+        employees.add("Мария Федорова");
+        employees.add("Марина Светлова");
+        employees.add("Мария Савина");
+        employees.add("Марина Лугова");
+        employees.add("Анна Владимирова");
+        employees.add("Иван Мечников");
+        employees.add("Петр Петин");
+        employees.add("Иван Ежов");
+        employees.add("Мария Рыкова");
+        sortNames(findCountName(employees)); 
+    }
+
+    public static Map<String, Integer> findCountName(List<String> empl) {
+        Map<String, Integer> res = new HashMap<String, Integer>();
+        List<String> names = new ArrayList<>();
+        for(String item : empl){
+            String[] temp = item.split(" ");
+            names.add(temp[0]);
+            res.putIfAbsent(temp[0] , 0);
+        }
+        for(String item : names ){
+            res.put(item, res.get(item) + 1);
+        }
+        return res;
+    }
+
+    public static void sortNames(Map<String, Integer> map) {
+        ArrayList<Integer> counts = new ArrayList<>();
+
+        for(Integer val : map.values()){
+            counts.add(val);
+        }
+        
+        Collections.sort(counts, Collections.reverseOrder());
+        for(int i = counts.size() - 1; i > 0; i--){
+            if(counts.get(i) == counts.get(i - 1)) counts.remove(i);
+        }
+
+        for(Integer val : counts){
+            for(var pair : map.entrySet()){
+                if(val == pair.getValue()){
+                    System.out.printf("*%s* встречается %d раз(а)", pair.getKey(), pair.getValue());
+                    System.out.println();
+                }
+            }
+        }
+    }
+}
