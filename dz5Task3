@@ -1,0 +1,47 @@
+// Реализовать алгоритм пирамидальной сортировки (HeapSort).
+
+public class dz5Task3 {
+    public static void main(String[] args) {
+        int[] array = {4, 6, 21, 14, 1, 8, 43, 25, 33, 16};
+        heapSort(array);
+        for (int num : array){
+            System.out.print(num + " ");
+        }
+    }
+
+    public static void heapSort(int[] arr) {
+        int length = arr.length;
+        for (int i = length / 2 - 1; i >= 0; i--)
+            heapify(arr, length, i);
+        for (int i = length - 1; i > 0; i--) {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+            heapify(arr, i, 0);
+        }
+   }
+
+    public static void heapify(int[] mas, int length, int index){
+        int max = index;
+        int left = 2 * index + 1;
+        int right = 2 * index + 2;
+
+        if (left < length && mas[left] > mas[max]) max = left;
+        if (right < length && mas[right] > mas[max]) max = right;
+        if (max != index) {
+            int swap = mas[index];
+            mas[index] = mas[max];
+            mas[max] = swap;
+            heapify(mas,length, max);
+        }
+   }
+}
+
+
+
+
+
+
+
+
+
