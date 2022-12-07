@@ -1,0 +1,29 @@
+import java.util.LinkedList;
+import java.util.Stack;
+
+/* 1) Написать метод, который принимает массив элементов, помещает их в стэк и выводит на консоль 
+содержимое стэка. 2) Написать метод, который принимает массив элементов, помещает их в очередь
+и выводит на консоль содержимое очереди. */
+
+public class dz4_3 {
+    public static void main(String[] args) {
+        int[] mas = {5, 6, 7, 8};
+        printStack(mas);
+        printLinked(mas);
+    }
+    public static void printStack(int[] arr) {
+        Stack<Integer> st = new Stack<>();
+        for(int item : arr){
+            st.push(item);
+        }
+        System.out.println(st);
+    }
+    public static void printLinked(int[] arr) {
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int item : arr){
+            list.add(item);
+        }
+        System.out.println(list);
+    }
+
+}

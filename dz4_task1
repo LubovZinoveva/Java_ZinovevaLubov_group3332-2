@@ -1,0 +1,23 @@
+import java.util.Collections;
+import java.util.LinkedList;
+
+// Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список
+
+public class dz4_1 {
+    public static void main(String[] args) {
+       LinkedList<Integer> lnkl = new LinkedList<>();
+       for(int i = 0; i < 5; i++){
+           lnkl.add(i);
+       }
+       System.out.println(lnkl);
+       System.out.println(reversList(lnkl));
+    }
+    public static LinkedList<Integer> reversList(LinkedList<Integer> list) {
+        Collections.reverse(list);
+        LinkedList<Integer> res = new LinkedList<>();
+        for(int item : list){
+            res.addLast(item);
+        }
+        return res;
+    }
+}
