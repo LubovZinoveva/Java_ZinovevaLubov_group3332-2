@@ -1,0 +1,30 @@
+import java.util.HashMap;
+import java.util.Map;
+
+//Реализуйте структуру телефонной книги с помощью HashMap, учитывая, что 1 человек может иметь несколько
+// телефонов.
+
+public class dz5Task1 {
+    public static void main(String[] args) {
+        Map<Integer, String> telephone = new HashMap<>();
+        telephone.put(14564, "Иванов Петр");
+        telephone.put(23463, "Хазанов Геннадий");
+        telephone.put(33473, "Иванов Петр");
+        telephone.put(48367, "Трешкин Иван");
+        telephone.put(59836, "Капуткин Константин");
+        telephone.put(61469, "Цветкова Лидия");
+        telephone.put(72346, "Иванов Петр");
+        telephone.put(89452, "Трешкин Иван");
+
+        findTelephon(telephone, "Иванов Петр");        
+    }
+
+    public static void findTelephon(Map<Integer, String> tel, String name) {
+        System.out.println(name + ": ");
+        for(Integer item : tel.keySet()){
+            if(name.equals(tel.get(item))){
+                System.out.println(item);
+            }
+        }
+    }
+}
